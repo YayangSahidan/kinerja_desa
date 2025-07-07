@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ResidentController;
 
+Route::get('/', function () {
+        return redirect()->route('login');
+    })->name('home');
 
 // --- RUTE AUTENTIKASI ---
 Route::get('/login', [AuthController::class, 'loginView'])->name('login');
