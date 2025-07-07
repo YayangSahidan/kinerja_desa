@@ -45,7 +45,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat datang di website Kinerja Desa!</h1>
                                     </div>
-                                    <form method="POST" action="{{ route('login.authenticate') }}">
+                                    <form class="user"  action="{{ route('login.authenticate') }}" method="POST">
                                         @csrf
                                         @method('POST')
                                         <div class="form-group">
@@ -63,7 +63,7 @@
                                         </button>
                                         <hr>
                                     <div class="text-center">
-                                        <a class="small" href="">Create an Account!</a>
+                                        <a class="small" href="/register">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

@@ -31,26 +31,18 @@ class ResidentController extends Controller
             'birth_date' => ['required', 'date'],
             'birth_place' => ['required', 'max:100'],
             'address' => ['required', 'max:255'],
-            'religion' => ['required', Rule::in(['islam', 'kristen', 'hindu', 'budha'])],
+            'religion' => ['nullable', 'max:50'],
             'marital_status' => ['required', Rule::in(['Single', 'Married', 'Divorced', 'Widowed'])],
-            'occupation'  => ['nullable', 'max:100'],
-            'education' => ['required', Rule::in(['SD', 'SMP', 'SMA/SMK/SEDERAJAT', 'D3', 'S1', 'S2','S3'])],
-            'phone_number' => ['nullable', 'max:15'],
-            'country_code' => ['required'],
+            'occupation' => ['nullable', 'max:100'],
+            'education' => ['nullable', 'max:100'],
+            'phone_number' => ['nullable', 'max:11'],
             'status' => ['required', Rule::in(['active', 'moved', 'deceased'])],
         ]);
 
-        $validatedData['phone_number'] = $validatedData['country_code'] . $validatedData['phone_number'];
-        // unset($validatedData['country_code']);
 
-        $insertData = Resident::create($validatedData);
+        Resident::create($validatedData);
 
-        if($insertData){
-
-            return redirect('/resident')->with('success', 'Berhasil menambahkan data');
-        } else {
-            
-        }
+        return redirect('/resident')->with('success', 'Berhasil menambahkan data');
     }    
 
 
@@ -77,13 +69,11 @@ class ResidentController extends Controller
             'marital_status' => ['required', Rule::in(['Single', 'Married', 'Divorced', 'Widowed'])],
             'occupation' => ['nullable', 'max:100'],
             'education' => ['nullable', 'max:100'],
-            'phone_number' => ['nullable', 'max:15'],
-            'country_code' => ['required'],
+            'phone_number' => ['nullable', 'max:11'],
             'status' => ['required', Rule::in(['active', 'moved', 'deceased'])],
             
         ]);
-        $validatedData['phone_number'] = $validatedData['country_code'] . $validatedData['phone_number'];
-        // unset($validatedData['country_code']);
+   
 
         Resident::findOrFail($id)->update($validatedData);
 
